@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>635</width>
+    <height>580</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Senologsys Weight Scale</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/mm_packing_weight.png</normaloff>:/mm_packing_weight.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>635</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuServer">
+    <property name="title">
+     <string>Server</string>
+    </property>
+    <addaction name="actionStatus"/>
+    <addaction name="actionLogout"/>
+   </widget>
+   <widget class="QMenu" name="menuSetting">
+    <property name="title">
+     <string>Setting</string>
+    </property>
+    <addaction name="actionOpen_Port"/>
+    <addaction name="actionDisconnect_Port"/>
+    <addaction name="actionSettingServer"/>
+    <addaction name="actionConfigure"/>
+    <addaction name="actionShow_Hide_Terminals"/>
+   </widget>
+   <widget class="QMenu" name="menuWeight">
+    <property name="title">
+     <string>Weight</string>
+    </property>
+    <addaction name="actionReading"/>
+   </widget>
+   <widget class="QMenu" name="menuCommand">
+    <property name="title">
+     <string>Command</string>
+    </property>
+    <addaction name="actionUpdate"/>
+    <addaction name="separator"/>
+    <addaction name="actionSet_Weight_Empty"/>
+    <addaction name="separator"/>
+    <addaction name="actionSet_Weight_1"/>
+    <addaction name="actionSet_Weight_10"/>
+    <addaction name="actionSet_Weight_100"/>
+    <addaction name="actionSet_Weight_1000"/>
+   </widget>
+   <addaction name="menuServer"/>
+   <addaction name="menuWeight"/>
+   <addaction name="menuSetting"/>
+   <addaction name="menuCommand"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionStatus"/>
+   <addaction name="separator"/>
+   <addaction name="actionOpen_Port"/>
+   <addaction name="actionDisconnect_Port"/>
+   <addaction name="separator"/>
+   <addaction name="actionReading"/>
+   <addaction name="separator"/>
+   <addaction name="separator"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionLogout">
+   <property name="text">
+    <string>Logout</string>
+   </property>
+  </action>
+  <action name="actionOpen_Port">
+   <property name="text">
+    <string>Connect Device</string>
+   </property>
+  </action>
+  <action name="actionDisconnect_Port">
+   <property name="text">
+    <string>Disconnect Device</string>
+   </property>
+  </action>
+  <action name="actionConfigure">
+   <property name="text">
+    <string>Scale</string>
+   </property>
+  </action>
+  <action name="actionShow_Hide_Terminals">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Terminal</string>
+   </property>
+  </action>
+  <action name="actionReading">
+   <property name="text">
+    <string>Please Connect Device</string>
+   </property>
+  </action>
+  <action name="actionStatus">
+   <property name="text">
+    <string>Status</string>
+   </property>
+  </action>
+  <action name="actionUpdate">
+   <property name="text">
+    <string>Force Update</string>
+   </property>
+  </action>
+  <action name="actionSettingServer">
+   <property name="text">
+    <string>Server</string>
+   </property>
+   <property name="toolTip">
+    <string>Service Server</string>
+   </property>
+  </action>
+  <action name="actionSet_Weight_Empty">
+   <property name="text">
+    <string>Set Weight Empty</string>
+   </property>
+  </action>
+  <action name="actionSet_Weight_1">
+   <property name="text">
+    <string>Set Weight 1</string>
+   </property>
+  </action>
+  <action name="actionSet_Weight_10">
+   <property name="text">
+    <string>Set Weight 10</string>
+   </property>
+  </action>
+  <action name="actionSet_Weight_100">
+   <property name="text">
+    <string>Set Weight 100</string>
+   </property>
+  </action>
+  <action name="actionSet_Weight_1000">
+   <property name="text">
+    <string>Set Weight 1000</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

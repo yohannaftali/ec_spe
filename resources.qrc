@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/">
+        <file>c39hrp24dhtt.ttf</file>
+        <file>bell_01.wav</file>
+        <file>mm_packing_weight.png</file>
+        <file>sign0038.wav</file>
+        <file>Noto_Sans/NotoSans-Black.ttf</file>
+        <file>Noto_Sans/NotoSans-BlackItalic.ttf</file>
+        <file>Noto_Sans/NotoSans-Bold.ttf</file>
+        <file>Noto_Sans/NotoSans-BoldItalic.ttf</file>
+        <file>Noto_Sans/NotoSans-ExtraBold.ttf</file>
+        <file>Noto_Sans/NotoSans-ExtraBoldItalic.ttf</file>
+        <file>Noto_Sans/NotoSans-ExtraLight.ttf</file>
+        <file>Noto_Sans/NotoSans-ExtraLightItalic.ttf</file>
+        <file>Noto_Sans/NotoSans-Italic.ttf</file>
+        <file>Noto_Sans/NotoSans-Light.ttf</file>
+        <file>Noto_Sans/NotoSans-LightItalic.ttf</file>
+        <file>Noto_Sans/NotoSans-Medium.ttf</file>
+        <file>Noto_Sans/NotoSans-MediumItalic.ttf</file>
+        <file>Noto_Sans/NotoSans-Regular.ttf</file>
+        <file>Noto_Sans/NotoSans-SemiBold.ttf</file>
+        <file>Noto_Sans/NotoSans-SemiBoldItalic.ttf</file>
+        <file>Noto_Sans/NotoSans-Thin.ttf</file>
+        <file>Noto_Sans/NotoSans-ThinItalic.ttf</file>
+        <file>Noto_Sans/OFL.txt</file>
+    </qresource>
+</RCC>
