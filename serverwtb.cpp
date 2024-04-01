@@ -28,7 +28,7 @@ void ServerWtb::reqSession(QString username)
 {
     qDebug() << "request session...";
     QNetworkRequest request;
-    QString conString = QString("%1/C_login/get_session?param=%2").arg(mainUrl).arg(username);
+    QString conString = QString("%1/C_login/get_session?param=%2").arg(mainUrl, username);
     qDebug() << "connected to " << conString;
     request.setUrl(QUrl(conString));
     request.setRawHeader("User-Agent", "WTBBrowser 1.0");
@@ -60,6 +60,7 @@ void ServerWtb::finishedSlot(QNetworkReply* reply)
                 qDebug() << "filename: " << filename ;
                 QUrl urlReply = reply->url();
                 qDebug() << "reply success" ;
+                qDebug() << urlReply.toString() ;
                 QString filenameFinal = saveFileName(filename);
                 if(saveToDisk(filenameFinal, reply)) {
                     QDesktopServices::openUrl(QUrl::fromLocalFile(filenameFinal));
@@ -97,12 +98,11 @@ void ServerWtb::reqSubmit(QString module, QUrlQuery params)
 {
     qDebug() << "request submit...";
     QNetworkRequest request;
-    request.setUrl(QUrl(QString("%1/C_%2/submit").arg(mainUrl).arg(module)));
+    request.setUrl(QUrl(QString("%1/C_%2/submit").arg(mainUrl, module)));
     request.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", "WTBBrowser 1.0");
     currentReply = nam->post(request, params.toString().toUtf8());
 }
-
 
 void ServerWtb::reqHome(QUrl home)
 {
@@ -117,7 +117,7 @@ void ServerWtb::reqModule(QString module)
 {
     qDebug() << "request module index...";
     QNetworkRequest request;
-    QString conString = QString("%1/C_%2/index").arg(mainUrl).arg(module);
+    QString conString = QString("%1/C_%2/index").arg(mainUrl, module);
     request.setUrl(QUrl(conString));
     request.setRawHeader("User-Agent", "WTBBrowser 1.0");
     currentReply = nam->get(request);
@@ -127,7 +127,7 @@ void ServerWtb::reqAutoComplete(QString module, QString variable, QString param)
 {
     qDebug() << "request autocomplete...";
     QNetworkRequest request;
-    QString conString = QString("%1/C_%2/call_%3_autocomplete?term=%4").arg(mainUrl).arg(module).arg(variable).arg(param);
+    QString conString = QString("%1/C_%2/call_%3_autocomplete?term=%4").arg(mainUrl, module, variable, param);
     QUrl url(conString);
     request.setUrl(QUrl(url.toEncoded()));
     request.setRawHeader("User-Agent", "WTBBrowser 1.0");
@@ -138,7 +138,7 @@ void ServerWtb::reqAutoComplete(QString module, QString variable, QString param)
  {
      qDebug() << "request module get...";
      QNetworkRequest request;
-     QString conString = QString("%1/C_%2/get?%3").arg(mainUrl).arg(module).arg(param);
+     QString conString = QString("%1/C_%2/get?%3").arg(mainUrl, module, param);
      QUrl url(conString);
      request.setUrl(QUrl(url.toEncoded()));
      request.setRawHeader("User-Agent", "WTBBrowser 1.0");
@@ -149,7 +149,7 @@ void ServerWtb::reqAutoComplete(QString module, QString variable, QString param)
  {
      qDebug() << "request get...";
      QNetworkRequest request;
-     QString conString = QString("%1/C_%2/%3?%4").arg(mainUrl).arg(module).arg(controller).arg(param);
+     QString conString = QString("%1/C_%2/%3?%4").arg(mainUrl, module, controller, param);
      QUrl url(conString);
      request.setUrl(QUrl(url.toEncoded()));
      request.setRawHeader("User-Agent", "WTBBrowser 1.0");
@@ -161,7 +161,7 @@ void ServerWtb::reqAutoComplete(QString module, QString variable, QString param)
  {
      qDebug() << "request pdf...";
      QNetworkRequest request;
-     QString conString = QString("%1/C_%2/%3?%4").arg(mainUrl).arg(module).arg(controller).arg(param);
+     QString conString = QString("%1/C_%2/%3?%4").arg(mainUrl, module, controller, param);
      QUrl url(conString);
      request.setUrl(QUrl(url.toEncoded()));
      request.setRawHeader("User-Agent", "WTBBrowser 1.0");

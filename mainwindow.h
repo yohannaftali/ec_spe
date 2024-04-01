@@ -59,7 +59,6 @@ private:
     QFont appFont;
 
     // Login Form
-    QFrame *frameLogin; 
     QLabel *labelLogin;
     QLabel *labelBrand;
     QLineEdit *lineEditInput;

@@ -4,6 +4,19 @@
 // don;t forget to add permission
 // sudo usermod -a -G dialout namauser
 
+// Deployment
+// - Copy build .exe and resources
+//   > bell_01.wav
+//   > Noto Sans Folder
+//   > c39hrp24dhtt.ttf
+//   > mm_packing_weight.png
+//   > sign0038.wav
+// - Open Powershell/terminal, go to QT Directory e.g C:\Qt\6.6.3\mingw_64\bin
+// - Run qtenv2.bat
+//   > PS C:\Qt\6.6.3\mingw_64\bin> .\qtenv2.bat
+// - Run windeployqt.exe
+//   > PS C:\Qt\6.6.3\mingw_64\bin> .\windeployqt.exe "C:\Your\Path\serial.exe
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -102,7 +115,8 @@ void MainWindow::createLogin()
 
     labelBrand = new QLabel();
     labelBrand->setStyleSheet("color:white;");
-    labelBrand->setText("SenologSys SPE v24.03.28");
+    labelBrand->setText("SenologSys SPE v24.04.01");
+    labelBrand->setAlignment(Qt::AlignCenter);
     labelBrand->setFont(fontLabelBrand);
     labelBrand->show();
     labelBrand->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
@@ -116,26 +130,28 @@ void MainWindow::createLogin()
     labelInfo = new QLabel();
     labelInfo->setText("");
     labelInfo->setStyleSheet("color:white;");
+    labelInfo->setAlignment(Qt::AlignCenter);
     labelInfo->setFont(fontLabelInfo);
     labelInfo->show();
     labelInfo->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 
     // Input
     // - Label
+    appFont.setPointSize(12);
+    appFont.setBold(false);
     labelLogin = new QLabel();
     labelLogin->setStyleSheet("color:white;");
     labelLogin->setText("Username :");
-    appFont.setPointSize(36);
-    appFont.setBold(true);
     labelLogin->setFont(appFont);
     labelLogin->show();
+
     // - Line Edit
+    appFont.setPointSize(26);
+    appFont.setBold(true);
     lineEditInput = new QLineEdit();
     lineEditInput->setObjectName("lineEditInput");
     lineEditInput->setStyleSheet("QLineEdit { background: lightblue; border-width: 2px; border-radius: 6px; }"
                                    "QLineEdit:hover { background: white; border-color: #4CAF50; }");
-    appFont.setPointSize(26);
-    appFont.setBold(true);
     lineEditInput->setFont(appFont);
     lineEditInput->show();
 
@@ -154,23 +170,41 @@ void MainWindow::createLogin()
     buttonLogin->show();
 
     // Layout
-    QHBoxLayout *layoutInput = new QHBoxLayout();
+    QHBoxLayout *layoutInputEdit = new QHBoxLayout();
+    layoutInputEdit->addStretch();
+    layoutInputEdit->addWidget(lineEditInput);
+
+    QVBoxLayout *layoutInput = new QVBoxLayout();
     layoutInput->addWidget(labelLogin);
-    layoutInput->addWidget(lineEditInput);
+    layoutInput->addLayout(layoutInputEdit);
+
+    QHBoxLayout *layoutInputFrame = new QHBoxLayout();
+    layoutInputFrame->addStretch();
+    layoutInputFrame->addLayout(layoutInput);
+    layoutInputFrame->addStretch();
 
     QHBoxLayout *layoutButton = new QHBoxLayout();
     layoutButton->addStretch();
     layoutButton->addWidget(buttonLogin);
     layoutButton->addStretch();
 
+    QVBoxLayout *layoutPanelLogin = new QVBoxLayout();
+    layoutPanelLogin->addWidget(labelBrand);
+    layoutPanelLogin->addStretch();
+    layoutPanelLogin->addWidget(labelInfo);
+    layoutPanelLogin->addStretch();
+    layoutPanelLogin->addLayout(layoutInputFrame);
+    layoutPanelLogin->addStretch();
+    layoutPanelLogin->addLayout(layoutButton);
+
+    QHBoxLayout *layoutFrameLogin = new QHBoxLayout();
+    layoutFrameLogin->addStretch();
+    layoutFrameLogin->addLayout(layoutPanelLogin);
+    layoutFrameLogin->addStretch();
+
     // Layout Login
     layoutLogin = new QVBoxLayout;
-    layoutLogin->addWidget(labelBrand);
-    layoutLogin->addStretch();
-    layoutLogin->addWidget(labelInfo);
-    layoutLogin->addLayout(layoutInput);
-    layoutLogin->addStretch();
-    layoutLogin->addLayout(layoutButton);
+    layoutLogin->addLayout(layoutFrameLogin);
     layoutLogin->addStretch();
 
     widgetLogin->setLayout(layoutLogin);
@@ -193,12 +227,16 @@ void MainWindow::createModule()
     labelCallback->show();
 
     // Case ID
+    appFont.setPointSize(12);
+    appFont.setBold(false);
     QLabel *labelCaseId = new QLabel();
     labelCaseId->setText("Lot No/Case ID: ");
     labelCaseId->setStyleSheet("color:white;");
     labelCaseId->setFont(appFont);
     labelCaseId->show();
 
+    appFont.setPointSize(26);
+    appFont.setBold(true);
     lineEditCaseId = new QLineEdit();
     lineEditCaseId->setAlignment(Qt::AlignRight);
     lineEditCaseId->setStyleSheet("QLineEdit { background: lightblue; border-width: 2px; border-radius: 6px; }"
@@ -207,12 +245,16 @@ void MainWindow::createModule()
     lineEditCaseId->show();
 
     // Case Type
+    appFont.setPointSize(12);
+    appFont.setBold(false);
     QLabel *labelCaseType = new QLabel();
     labelCaseType->setText("Case Type: ");
     labelCaseType->setStyleSheet("color:white;");
     labelCaseType->setFont(appFont);
     labelCaseType->show();
 
+    appFont.setPointSize(26);
+    appFont.setBold(true);
     textCaseType = new QLabel();
     textCaseType->setText("");
     textCaseType->setStyleSheet("color:white;");
@@ -220,12 +262,16 @@ void MainWindow::createModule()
     textCaseType->show();
 
     // Weight Net
+    appFont.setPointSize(12);
+    appFont.setBold(false);
     QLabel *labelWeightNet = new QLabel();
     labelWeightNet->setText("Net Weight: ");
     labelWeightNet->setStyleSheet("color:white;");
     labelWeightNet->setFont(appFont);
     labelWeightNet->show();
 
+    appFont.setPointSize(26);
+    appFont.setBold(true);
     textWeightNet = new QLabel();
     textWeightNet->setText("");
     textWeightNet->setStyleSheet("color:white;");
@@ -240,12 +286,16 @@ void MainWindow::createModule()
     labelWeightNetKg->show();
 
     // Weight Gross
+    appFont.setPointSize(12);
+    appFont.setBold(false);
     QLabel *labelWeightGross = new QLabel();
     labelWeightGross->setText("Gross Weight: ");
     labelWeightGross->setStyleSheet("color:white;");
     labelWeightGross->setFont(appFont);
     labelWeightGross->show();
 
+    appFont.setPointSize(26);
+    appFont.setBold(true);
     lineEditWeightGross = new QLineEdit();
     lineEditWeightGross->setStyleSheet("QLineEdit { background: rgba(177, 177, 177, 1); border-width: 2px; border-radius: 6px; }"
                                    "QLineEdit:hover { background: rgba(200, 200, 200, 1); border-color: #4CAF50; }");
@@ -278,40 +328,55 @@ void MainWindow::createModule()
     submitDisable();
 
     // Layout
-    QHBoxLayout *layoutCaseId = new QHBoxLayout();
-    layoutCaseId->addWidget(labelCaseId);
-    layoutCaseId->addStretch();
-    layoutCaseId->addWidget(lineEditCaseId);
+    QHBoxLayout *layoutCaseIdInput = new QHBoxLayout();
+    layoutCaseIdInput->addStretch();
+    layoutCaseIdInput->addWidget(lineEditCaseId);
 
-    QHBoxLayout *layoutCaseType = new QHBoxLayout();
+    QVBoxLayout *layoutCaseId = new QVBoxLayout();
+    layoutCaseId->addWidget(labelCaseId);
+    layoutCaseId->addLayout(layoutCaseIdInput);
+
+    QHBoxLayout *layoutCaseTypeText = new QHBoxLayout();
+    layoutCaseTypeText->addStretch();
+    layoutCaseTypeText->addWidget(textCaseType);
+
+    QVBoxLayout *layoutCaseType = new QVBoxLayout();
     layoutCaseType->addWidget(labelCaseType);
-    layoutCaseType->addStretch();
-    layoutCaseType->addWidget(textCaseType);
+    layoutCaseType->addLayout(layoutCaseTypeText);
 
     QVBoxLayout *layoutCase = new QVBoxLayout();
     layoutCase->addLayout(layoutCaseId);
     layoutCase->addLayout(layoutCaseType);
 
-    QHBoxLayout *layoutWeightNet = new QHBoxLayout();
-    layoutWeightNet->addWidget(labelWeightNet);
-    layoutWeightNet->addStretch();
-    layoutWeightNet->addWidget(textWeightNet);
-    layoutWeightNet->addWidget(labelWeightNetKg);
+    QHBoxLayout *layoutWeightNetText = new QHBoxLayout();
+    layoutWeightNetText->addStretch();
+    layoutWeightNetText->addWidget(textWeightNet);
+    layoutWeightNetText->addWidget(labelWeightNetKg);
 
-    QHBoxLayout *layoutWeightGross = new QHBoxLayout();
+    QVBoxLayout *layoutWeightNet = new QVBoxLayout();
+    layoutWeightNet->addWidget(labelWeightNet);
+    layoutWeightNet->addLayout(layoutWeightNetText);
+
+    QHBoxLayout *layoutWeightGrossText = new QHBoxLayout();
+    layoutWeightGrossText->addStretch();
+    layoutWeightGrossText->addWidget(lineEditWeightGross);
+    layoutWeightGrossText->addWidget(labelWeightGrossKg);
+
+    QVBoxLayout *layoutWeightGross = new QVBoxLayout();
     layoutWeightGross->addWidget(labelWeightGross);
-    layoutWeightGross->addStretch();
-    layoutWeightGross->addWidget(lineEditWeightGross);
-    layoutWeightGross->addWidget(labelWeightGrossKg);
+    layoutWeightGross->addLayout(layoutWeightGrossText);
 
     QVBoxLayout *layoutWeight = new QVBoxLayout();
     layoutWeight->addLayout(layoutWeightNet);
     layoutWeight->addLayout(layoutWeightGross);
 
+    QSpacerItem *spacerHeader = new QSpacerItem(20, 40, QSizePolicy::Expanding, QSizePolicy::Fixed);
+
     QHBoxLayout *layoutHeader = new QHBoxLayout();
     layoutHeader->addLayout(layoutCase);
     layoutHeader->addStretch(1);
     layoutHeader->addLayout(layoutWeight);
+
 
     QHBoxLayout *layoutButton = new QHBoxLayout();
     layoutButton->addStretch();
@@ -320,11 +385,13 @@ void MainWindow::createModule()
     // Layout Module
     layoutModule = new QVBoxLayout;
     layoutModule->addLayout(layoutHeader);
-    layoutModule->addWidget(tableView);
     layoutModule->addWidget(labelCallback);
+    layoutModule->addWidget(tableView);
+    layoutModule->addItem(spacerHeader);
     layoutModule->addLayout(layoutButton);
 
-     widgetModule->setLayout(layoutModule);
+    // Attach Module
+    widgetModule->setLayout(layoutModule);
 
     // Create the context menu
     QMenu* contextMenu = new QMenu(tableView);
